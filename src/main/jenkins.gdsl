@@ -12,18 +12,18 @@ def rootContext = context(pathRegexp: /.*\/Jenkinsfile|.*\/.*\.groovy/)
  * which may be used in a contributor application as regular Groovy methods.
  */
 contributor([rootContext]) {
-  // Scopes
-  property(name: "closureScope", type: {})
-  property(name: "scriptScope", type: {})
-
-  // Parent Pipeline Object
-  method(name: 'pipeline', type: Object, params: [body: Closure], doc: 'Declarative Pipeline')
   property(name: 'pipeline', type: 'org.jenkinsci.plugins.pipeline.modeldefinition.ModelStepLoader')
   property(name: 'params', type: 'org.jenkinsci.plugins.workflow.cps.ParamsVariable')
   property(name: 'env', type: 'org.jenkinsci.plugins.workflow.cps.EnvActionImpl.Binder', doc: 'Environment variable')
   property(name: 'currentBuild', type: 'org.jenkinsci.plugins.workflow.cps.RunWrapperBinder')
   property(name: 'scm', type: 'org.jenkinsci.plugins.workflow.multibranch.SCMVar')
 
+  // Scopes
+  property(name: "closureScope", type: {})
+  property(name: "scriptScope", type: {})
+
+  // Parent Pipeline Object
+  method(name: 'pipeline', type: Object, params: [body: Closure], doc: 'Declarative Pipeline')
   method(name: "context", params: [args: [:]], type: "java.lang.Object")
   method(name: "contributor", params: [contexts: "java.util.List", body: {}], type: void)
 }
