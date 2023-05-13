@@ -4,14 +4,14 @@
  * with optional arguments, each of which may be omitted. Without any arguments given invocation of
  * context method returns the definition of an empty context, which has a meaning ``everywhere''.
  */
-def gdslScriptContext = context(scope: scriptScope(null))
+def rootContext = context(pathRegexp: /.*\/Jenkinsfile|.*\/.*\.groovy/)
 
 /**
  * Contributors provide new properties and methods according to given contexts.
  * We provide a set of utility methods to augment existing types with new behavior,
  * which may be used in a contributor application as regular Groovy methods.
  */
-contributor([gdslScriptContext]) {
+contributor([rootContext]) {
   // Scopes
   property(name: "closureScope", type: {})
   property(name: "scriptScope", type: {})
